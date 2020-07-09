@@ -1,15 +1,23 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
+const apiRouter = require('./routes/api');
 
 require('dotenv').config();
+require('./db').connect();
 
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send('Hola servidor a hola')
+app.use('/api', apiRouter)
+
+app.listen(3000, () => {
+    console.log('hola puerto')
 });
 
 
 
-const PORT = process.env.PORT || 3333;
 
-app.listen(3000, () => { console.log(`Servidor escuchando en puerto 3000 ${PORT}`) });
+
