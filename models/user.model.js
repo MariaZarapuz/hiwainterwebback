@@ -9,6 +9,17 @@ const getByCif = pCif => {
     });
 };
 
+const updateToken = (pToken, pId) => {
+    return new Promise((resolve, reject) => {
+        db.query('update user set token=? where id=?', [token, id],
+            (err, result) => {
+                if (err) reject(err);
+                resolve(result)
+            })
+    })
+}
+
 module.exports = {
-    getByCif: getByCif
+    getByCif: getByCif,
+    updateToken: updateToken
 }

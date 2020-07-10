@@ -17,11 +17,12 @@ router.post('/login', async (req, res) => {
         console.log(same)
         if (same) {
             let token = createToken(user);
+            console.log(token)
             res.json({ success: token })
         } else {
             res.json('Autentificación fallida')
         }
-    } catch{
+    } catch (err) {
         console.log(err)
     }
 
@@ -31,10 +32,15 @@ const createToken = user => {
     const payload = {
         userId: user.id,
         createAt: moment().unix(),
-        expiredAt: moment().add(1, 'day').unix()
+        expiredAt: moment().add(5, 'minutes').unix()
     }
 
-    return jwt.encode(payload, process.env.SECRET_KEY);
+    return jwt.encode(payload, 'Clave servidor');
 }
+
+router.post('/saveToken', async (req, res) => {
+    const result = await User.updateToken(req.body.token, req.body.id)
+    console.log(result)
+})
 
 module.exports = router;
