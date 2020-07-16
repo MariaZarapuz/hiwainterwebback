@@ -7,10 +7,14 @@ const getAllDrinks = () => {
     })
 }
 
-
-
-
-
+const getDrinksByName = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select name, active from drink ', (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
+}
 
 
 const createDrink = (name, type, category, price, active, description) => {
@@ -20,9 +24,20 @@ const createDrink = (name, type, category, price, active, description) => {
             resolve(result)
         })
     })
+};
+
+const updateActive = (active, id) => {
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE drink SET active = ? WHERE id = ?', [active, id], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
 }
 
 module.exports = {
     createDrink: createDrink,
-    getAllDrinks: getAllDrinks
+    getAllDrinks: getAllDrinks,
+    getDrinksByName: getDrinksByName,
+    updateActive: updateActive
 }

@@ -7,9 +7,14 @@ const getAllPlate = () => {
     });
 };
 
-
-
-
+const getPlatesByName = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select name, active from plate ', (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
+}
 
 
 const createPlate = (name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard) => {
@@ -21,7 +26,18 @@ const createPlate = (name, category, description, img, price, active, gluten, se
     })
 }
 
+const updateActive = (active, id) => {
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE plate SET active = ? WHERE id = ?', [active, id], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
+}
+
 module.exports = {
     createPlate: createPlate,
-    getAllPlate: getAllPlate
+    getAllPlate: getAllPlate,
+    getPlatesByName: getPlatesByName,
+    updateActive: updateActive
 }
