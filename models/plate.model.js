@@ -1,3 +1,17 @@
+const getAllPlate = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from plate', (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        })
+    });
+};
+
+
+
+
+
+
 const createPlate = (name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard) => {
     return new Promise((resolve, reject) => {
         db.query('insert into plate(name,category,description,img,price,active,gluten,sesame,lactose,nut,penaut,gmo,egg,fish,crustacean,lupin,mollusk,celery,soya,mustard)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard], (err, result) => {
@@ -8,5 +22,6 @@ const createPlate = (name, category, description, img, price, active, gluten, se
 }
 
 module.exports = {
-    createPlate: createPlate
+    createPlate: createPlate,
+    getAllPlate: getAllPlate
 }
