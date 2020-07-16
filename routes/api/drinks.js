@@ -20,8 +20,7 @@ router.post('/add', async (req, res) => {
 //PUT http://localhost:3000/api/drinks/updateActive
 router.put('/updateActive', async (req, res) => {
     const updateActive = await Drink.updateActive(req.body.active, req.body.id)
-    console.log(updateActive)
-
+    res.json('ok')
 });
 
 

@@ -19,6 +19,7 @@ router.put('/updateActive', async (req, res) => {
     console.log(req.body)
     const updateActive = await Plate.updateActive(req.body.active, req.body.id)
     console.log(updateActive)
+    res.json('ok')
 });
 
 module.exports = router;

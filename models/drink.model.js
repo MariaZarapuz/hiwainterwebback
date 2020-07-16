@@ -9,7 +9,7 @@ const getAllDrinks = () => {
 
 const getDrinksByName = () => {
     return new Promise((resolve, reject) => {
-        db.query('select name, active from drink ', (err, rows) => {
+        db.query('select name,id,category, active from drink ', (err, rows) => {
             if (err) reject(err);
             resolve(rows)
         })
