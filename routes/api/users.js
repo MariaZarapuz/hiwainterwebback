@@ -5,8 +5,6 @@ const moment = require('moment')
 const jwt = require('jwt-simple')
 
 router.post('/login', async (req, res) => {
-    console.log(req.body.cif)
-
     try {
         const user = await User.getByCif(req.body.cif)
         if (!user) {
@@ -14,10 +12,9 @@ router.post('/login', async (req, res) => {
         }
 
         const same = bcrypt.compareSync(req.body.password, user.password);
-        console.log(same)
         if (same) {
-            let token = createToken(user);
-            console.log(token)
+            let token = createToken(user)
+            User.updateToken(token, user.id)
             res.json({ success: token })
         } else {
             res.json('Autentificación fallida')
@@ -40,7 +37,6 @@ const createToken = user => {
 
 router.post('/saveToken', async (req, res) => {
     const result = await User.updateToken(req.body.token, req.body.id)
-    console.log(result)
 })
 
 module.exports = router;

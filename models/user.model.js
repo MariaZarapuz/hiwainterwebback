@@ -1,5 +1,4 @@
 const getByCif = pCif => {
-    console.log(pCif)
     return new Promise((resolve, reject) => {
         db.query('select * from user where cif=?', [pCif], (err, rows) => {
             if (err) return reject(err);
@@ -9,9 +8,9 @@ const getByCif = pCif => {
     });
 };
 
-const updateToken = (pToken, pId) => {
+const updateToken = (ptoken, pid) => {
     return new Promise((resolve, reject) => {
-        db.query('update user set token=? where id=?', [token, id],
+        db.query('update user set token=? where id=?', [ptoken, pid],
             (err, result) => {
                 if (err) reject(err);
                 resolve(result)
