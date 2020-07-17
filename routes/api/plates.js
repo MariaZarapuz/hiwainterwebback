@@ -24,8 +24,13 @@ router.post('/add', async (req, res) => {
 
 //PUT http://localhost:3000/api/plates/edit/:id
 router.put('/edit/:id', async (req, res) => {
-    const plate = await Plate.editPlateById(req.body, req.params.id)
-    console.log(plate)
+    const plateEdit = await Plate.editPlateById(req.body, req.params.id)
+    if (plateEdit['affectedRows'] === 1) {
+        const plate = await Plate.getPlateById(req.params.id);
+        res.json(plate);
+    } else {
+        res.json('No se ha editado correctamente')
+    }
 })
 
 //PUT http://localhost:3000/api/plates/updateActive
@@ -35,5 +40,17 @@ router.put('/updateActive', async (req, res) => {
     console.log(updateActive)
     res.json('ok')
 });
+
+//Delete http://localhost:3000/api/plates/delete/:id
+router.delete('/delete/:id', async (req, res) => {
+    console.log(req.params.id)
+    const plateDelete = await Plate.deletePlateById(req.params.id)
+    if (plateDelete['affectedRows'] === 1) {
+        res.json('Se ha borrado corectamente')
+    } else {
+        res.json('No se ha borrado correctamente')
+    }
+})
+
 
 module.exports = router;

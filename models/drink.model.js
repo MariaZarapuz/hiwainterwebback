@@ -52,8 +52,18 @@ const updateActive = (active, id) => {
         db.query('UPDATE drink SET active = ? WHERE id = ?', [active, id], (err, rows) => {
             if (err) reject(err);
             resolve(rows)
-        })
-    })
+        });
+    });
+};
+
+const deleteDrinkById = (id) => {
+    console.log(id)
+    return new Promise((resolve, reject) => {
+        db.query('DELETE FROM drink WHERE id=?', [id], (err, result) => {
+            if (err) reject(err);
+            resolve(result)
+        });
+    });
 }
 
 module.exports = {
@@ -62,5 +72,6 @@ module.exports = {
     getDrinkById: getDrinkById,
     getDrinksByName: getDrinksByName,
     editDrinkById: editDrinkById,
-    updateActive: updateActive
+    updateActive: updateActive,
+    deleteDrinkById: deleteDrinkById
 }
