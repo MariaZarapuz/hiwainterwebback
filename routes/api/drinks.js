@@ -24,6 +24,7 @@ router.post('/add', async (req, res) => {
 
 //PUT http://localhost:3000/api/drinks/edit/:id
 router.put('/edit/:id', async (req, res) => {
+    console.log(req.params.id)
     const editDrink = await Drink.editDrinkById(req.body, req.params.id)
     console.log(editDrink)
     if (editDrink['affectedRows'] === 1) {
