@@ -37,8 +37,10 @@ const createDrink = (name, type, category, price, active, description) => {
 };
 
 const editDrinkById = ({ name, type, category, price, description }, idDrink) => {
+    console.log(name, category, price, description, type, idDrink)
     return new Promise((resolve, reject) => {
-        db.query('UPDATE drink SET name= ?,type= ?,category= ?,price= ?,description WHERE id = ?', [name, type, category, price, description, idDrink], (err, rows) => {
+        db.query('UPDATE drink SET name= ?,type= ?,category= ?,price= ?,description=? WHERE id = ?', [name, type, category, price, description, idDrink], (err, rows) => {
+            console.log(rows)
             if (err) reject(err);
             resolve(rows)
         })
