@@ -7,6 +7,15 @@ const getAllPlate = () => {
     });
 };
 
+const getPlateById = (id) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from plate where id=?', [id], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    })
+};
+
 const getPlatesByName = () => {
     return new Promise((resolve, reject) => {
         db.query('select name, active from plate ', (err, rows) => {
@@ -24,6 +33,15 @@ const createPlate = (name, category, description, img, price, active, gluten, se
             resolve(result)
         })
     })
+};
+
+const editPlateById = ({ name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard }, idPlate) => {
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE plate SET name = ?, category = ?, description = ?, img = ?, price = ?, active = ?, gluten = ?, sesame = ?, lactose = ?, nut = ?, penaut = ?, gmo = ?, egg = ?, fish = ?, crustacean = ?, lupin = ?, mollusk = ?, celery = ?, soya = ?, mustard = ? WHERE id = ?', [name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard, idPlate], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
 }
 
 const updateActive = (active, id) => {
@@ -38,6 +56,8 @@ const updateActive = (active, id) => {
 module.exports = {
     createPlate: createPlate,
     getAllPlate: getAllPlate,
+    getPlateById: getPlateById,
     getPlatesByName: getPlatesByName,
+    editPlateById: editPlateById,
     updateActive: updateActive
 }
