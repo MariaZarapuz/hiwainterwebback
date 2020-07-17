@@ -35,9 +35,9 @@ const createPlate = (name, category, description, img, price, active, gluten, se
     })
 };
 
-const editPlateById = ({ name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard }, idPlate) => {
+const editPlateById = ({ name, category, description, img, price, active, gluten, sesame, lactose, nuts, penaut, gmo, egg, fish, crustacean, lupin, mollusks, celery, soya, mustard }, idPlate) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE plate SET name = ?, category = ?, description = ?, img = ?, price = ?, active = ?, gluten = ?, sesame = ?, lactose = ?, nut = ?, penaut = ?, gmo = ?, egg = ?, fish = ?, crustacean = ?, lupin = ?, mollusk = ?, celery = ?, soya = ?, mustard = ? WHERE id = ?', [name, category, description, img, price, active, gluten, sesame, lactose, nut, penaut, gmo, egg, fish, crustacean, lupin, mollusk, celery, soya, mustard, idPlate], (err, rows) => {
+        db.query('UPDATE plate SET name = ?, category = ?, description = ?, img = ?, price = ?, active = ?, gluten = ?, sesame = ?, lactose = ?, nuts = ?, penaut = ?, gmo = ?, egg = ?, fish = ?, crustacean = ?, lupin = ?, mollusks = ?, celery = ?, soya = ?, mustard = ? WHERE id = ?', [name, category, description, img, price, active, gluten, sesame, lactose, nuts, penaut, gmo, egg, fish, crustacean, lupin, mollusks, celery, soya, mustard, idPlate], (err, rows) => {
             if (err) reject(err);
             resolve(rows)
         });
