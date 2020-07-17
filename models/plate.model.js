@@ -18,7 +18,7 @@ const getPlateById = (id) => {
 
 const getPlatesByName = () => {
     return new Promise((resolve, reject) => {
-        db.query('select name,id, active from plate ', (err, rows) => {
+        db.query('select name,id, category,active from plate ', (err, rows) => {
             if (err) reject(err);
             resolve(rows)
         })

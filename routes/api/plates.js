@@ -24,7 +24,8 @@ router.post('/add', async (req, res) => {
 
 //PUT http://localhost:3000/api/plates/edit/:id
 router.put('/edit/:id', async (req, res) => {
-    const plateEdit = await Plate.editPlateById(req.body, req.params.id)
+    console.log(req.body)
+    const plateEdit = await Plate.editPlateById(req.body.data, req.params.id)
     if (plateEdit['affectedRows'] === 1) {
         const plate = await Plate.getPlateById(req.params.id);
         res.json(plate);

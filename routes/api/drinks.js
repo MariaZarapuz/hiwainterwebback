@@ -24,16 +24,15 @@ router.post('/add', async (req, res) => {
 
 //PUT http://localhost:3000/api/drinks/edit/:id
 router.put('/edit/:id', async (req, res) => {
-    console.log(req.params.id)
-    const editDrink = await Drink.editDrinkById(req.body, req.params.id)
-    console.log(editDrink)
+    console.log(req.body, req.params.id)
+    const editDrink = await Drink.editDrinkById(req.body.data, req.params.id)
+
     if (editDrink['affectedRows'] === 1) {
         const drink = await Drink.getDrinkById(req.params.id);
         res.json(drink);
     } else {
         res.json('No se ha editado correctamente')
     }
-
 });
 
 //PUT http://localhost:3000/api/drinks/updateActive
