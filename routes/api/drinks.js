@@ -46,7 +46,9 @@ router.delete('/delete/:id', async (req, res) => {
     console.log(req.params.id)
     const drinkDelete = await Drink.deleteDrinkById(req.params.id)
     if (drinkDelete['affectedRows'] === 1) {
-        res.json('Se ha borrado corectamente')
+        const drinksAll = await Drink.getAllDrinks();
+        res.json(drinksAll);
+
     } else {
         res.json('No se ha borrado correctamente')
     }

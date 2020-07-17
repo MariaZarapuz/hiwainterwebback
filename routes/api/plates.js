@@ -47,7 +47,8 @@ router.delete('/delete/:id', async (req, res) => {
     console.log(req.params.id)
     const plateDelete = await Plate.deletePlateById(req.params.id)
     if (plateDelete['affectedRows'] === 1) {
-        res.json('Se ha borrado corectamente')
+        const plateAll = await Plate.getAllPlate();
+        res.json(plateAll);
     } else {
         res.json('No se ha borrado correctamente')
     }
