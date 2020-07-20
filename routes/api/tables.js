@@ -11,8 +11,13 @@ router.get('/', async (req, res) => {
             res.json('No ha mesa para enviar')
         }
     }
+});
 
+router.put('/editState', async (req, res) => {
 
+    const tableEdit = await Table.editState(req.body.status, req.body.id)
+
+    res.json('Modificado correctamente')
 })
 
 module.exports = router;

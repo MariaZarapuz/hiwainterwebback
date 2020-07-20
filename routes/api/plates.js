@@ -52,6 +52,7 @@ router.delete('/delete/:id', async (req, res) => {
     } else {
         res.json('No se ha borrado correctamente')
     }
+
 })
 
 

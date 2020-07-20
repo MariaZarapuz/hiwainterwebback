@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 })
 
-//GET http://localhost:3000/api/menu/listUser
+//GET http://localhost:3000/api/menu/listProducts
 router.get('/listProducts', async (req, res) => {
     const drinksfilter = await Drink.getDrinksByName();
     const platesfilter = await Plate.getPlatesByName();
@@ -23,6 +23,8 @@ router.get('/listProducts', async (req, res) => {
     res.json(listmenu)
 
 })
+
+
 
 
 

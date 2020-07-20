@@ -6,9 +6,20 @@ const getAllTables = () => {
             resolve(rows)
         })
     })
+};
+
+const editState = (state, id) => {
+    console.log(state, id);
+    return new Promise((resolve, reject) => {
+        db.query('update tables set state=? where id=?', [state, id], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    })
 }
 
 
 module.exports = {
-    getAllTables: getAllTables
+    getAllTables: getAllTables,
+    editState: editState
 };
