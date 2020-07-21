@@ -10,7 +10,7 @@ router.get('/table', async (req, res) => {
 router.get('/table/:fk_tables', async (req, res) => {
     console.log(req.params.fk_tables);
     const tickets = await Ticket.getTicketsByFk_tables(req.params.fk_tables)
-    res.json('todo coorrecto', tickets);
+    res.json(tickets);
 });
 
 
