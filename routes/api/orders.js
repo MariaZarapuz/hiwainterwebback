@@ -7,7 +7,7 @@ router.post('/add', async (req, res) => {
     const listOrder = req.body.order
 
     for (const order of listOrder) {
-        console.log(order.category);
+
         if (order.category === 'drink') {
             let orderDrink = await Order.createOrderFk_drinks(order.quantity, order.fk, order.ticket)
 

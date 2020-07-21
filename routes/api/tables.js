@@ -13,6 +13,12 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/check/:numero/:token', async (req, res) => {
+    console.log(req.params.id);
+    const table = await Table.getByIdTables(req.params.id);
+    console.log(table);
+})
+
 router.put('/editState', async (req, res) => {
 
     const tableEdit = await Table.editState(req.body.status, req.body.id)

@@ -8,6 +8,15 @@ const getAllTables = () => {
     })
 };
 
+const getByIdTables = (id) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM tables WHERE number=?', [id], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
+};
+
 
 
 
@@ -26,6 +35,6 @@ const editState = (state, id) => {
 
 module.exports = {
     getAllTables: getAllTables,
-
+    getByIdTables: getByIdTables,
     editState: editState
 };
