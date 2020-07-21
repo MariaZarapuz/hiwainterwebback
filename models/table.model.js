@@ -8,9 +8,10 @@ const getAllTables = () => {
     })
 };
 
-const getByIdTables = (id) => {
+const getByIdTables = (id, token) => {
+    console.log(id, 'id2');
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM tables WHERE id=?', [id], (err, rows) => {
+        db.query('SELECT * FROM tables WHERE id=? AND token =?', [id, token], (err, rows) => {
             if (err) reject(err);
             resolve(rows)
         })

@@ -14,9 +14,15 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/check/:idTable/:token', async (req, res) => {
-    console.log(req.params.idTable);
-    const table = await Table.getByIdTables(req.params.id);
-    console.log(table);
+    console.log(req.params, 'id');
+    const table = await Table.getByIdTables(req.params.idTable, req.params.token);
+    console.log(table.length, 'table');
+    if (table.length === 0) {
+        res.json(false)
+
+    } else {
+        res.json(true)
+    }
 })
 
 router.put('/editState', async (req, res) => {
