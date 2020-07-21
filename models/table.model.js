@@ -8,6 +8,7 @@ const getAllTables = () => {
     })
 };
 
+
 const editState = (state, id) => {
     console.log(state, id);
     return new Promise((resolve, reject) => {
@@ -16,7 +17,9 @@ const editState = (state, id) => {
             resolve(result);
         })
     })
-}
+};
+
+
 
 
 module.exports = {
