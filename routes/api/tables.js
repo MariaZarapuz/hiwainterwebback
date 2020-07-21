@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/check/:numero/:token', async (req, res) => {
-    console.log(req.params.id);
+router.get('/check/:idTable/:token', async (req, res) => {
+    console.log(req.params.idTable);
     const table = await Table.getByIdTables(req.params.id);
     console.log(table);
 })
