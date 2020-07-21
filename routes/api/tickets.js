@@ -4,7 +4,7 @@ const Ticket = require('../../models/ticket.model');
 
 router.get('/table', async (req, res) => {
     const total = await Ticket.getGroupTable();
-    console.log(total);
+    res.json(total);
 })
 
 router.post('/add', async (req, res) => {
