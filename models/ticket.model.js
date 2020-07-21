@@ -7,6 +7,15 @@ const createTicket = (fk_tables) => {
         })
     })
 }
+
+const getTicketsByFk_tables = (fk_table) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT id FROM tickets WHERE fk_tables=?', fk_table, (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        })
+    })
+}
 const getGroupTable = () => {
     return new Promise((resolve, reject) => {
         db.query('select fk_tables,COUNT (*) FROM tickets GROUP BY fk_tables ', (err, result) => {
@@ -18,5 +27,6 @@ const getGroupTable = () => {
 
 module.exports = {
     createTicket: createTicket,
-    getGroupTable: getGroupTable
+    getGroupTable: getGroupTable,
+    getTicketsByFk_tables: getTicketsByFk_tables,
 }

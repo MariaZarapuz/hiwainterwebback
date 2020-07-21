@@ -4,8 +4,16 @@ const Ticket = require('../../models/ticket.model');
 
 router.get('/table', async (req, res) => {
     const total = await Ticket.getGroupTable();
-    res.json(total);
-})
+    res.json('todo coorrecto', total);
+});
+
+router.get('/table/:fk_tables', async (req, res) => {
+    console.log(req.params.fk_tables);
+    const tickets = await Ticket.getTicketsByFk_tables(req.params.fk_tables)
+    res.json('todo coorrecto', tickets);
+});
+
+
 
 router.post('/add', async (req, res) => {
     console.log('hola', req.body)
