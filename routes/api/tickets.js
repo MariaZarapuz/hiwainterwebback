@@ -16,14 +16,15 @@ router.get('/table/:fk_tables', async (req, res) => {
 
 
 router.post('/add', async (req, res) => {
-    console.log('hola', req.body)
+    console.log(req.body)
     let quantity = req.body.quantity
     console.log(quantity);
     for (let index = 1; index <= quantity; index++) {
         console.log('tickets', index);
         let ticket = await Ticket.createTicket(req.body.id)
-        console.log(ticket);
     }
+
+    res.json('Tickets insertado')
 })
 
 

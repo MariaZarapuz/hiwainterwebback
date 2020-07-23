@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const multer = require('multer');
+const upload = multer({ dest: 'public/images' })
 const Plate = require('../../models/plate.model');
 
 // GET http://localhost:3000/api/plates

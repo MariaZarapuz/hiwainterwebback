@@ -36,6 +36,16 @@ const createDrink = (name, type, category, price, active, description) => {
     })
 };
 
+
+const editImg = (img, id) => {
+    return new Promise((resolve, reject) => {
+        db.query('update drink set img=? where id=?', [img, id], (err, result) => {
+            if (err) reject(err);
+            resolve(result)
+        })
+    })
+}
+
 const editDrinkById = ({ name, type, category, price, description }, idDrink) => {
     console.log(name, category, price, description, type, idDrink)
     return new Promise((resolve, reject) => {
@@ -74,6 +84,7 @@ module.exports = {
     getDrinkById: getDrinkById,
     getDrinksByName: getDrinksByName,
     editDrinkById: editDrinkById,
+    editImg: editImg,
     updateActive: updateActive,
     deleteDrinkById: deleteDrinkById
 }
