@@ -8,7 +8,6 @@ router.get('/table', async (req, res) => {
 });
 
 router.get('/table/:fk_tables', async (req, res) => {
-    console.log(req.params.fk_tables);
     const tickets = await Ticket.getTicketsByFk_tables(req.params.fk_tables)
     res.json(tickets);
 });
@@ -16,12 +15,11 @@ router.get('/table/:fk_tables', async (req, res) => {
 
 
 router.post('/add', async (req, res) => {
-    console.log(req.body)
     let quantity = req.body.quantity
     console.log(quantity);
-    for (let index = 1; index <= quantity; index++) {
+    for (let index = 0; index < quantity; index++) {
         console.log('tickets', index);
-        let ticket = await Ticket.createTicket(req.body.id)
+        let ticket = await Ticket.createTicket(req.body.id, req.body.arrayName[index])
     }
 
     res.json('Tickets insertado')
