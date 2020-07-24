@@ -13,6 +13,7 @@ const getTicketsByFk_tables = (fk_table) => {
         db.query('SELECT id FROM tickets WHERE fk_tables=?', fk_table, (err, rows) => {
             if (err) reject(err);
             resolve(rows);
+            console.log(rows)
         })
     })
 }
