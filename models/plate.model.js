@@ -1,6 +1,6 @@
 const getAllPlate = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from plate', (err, rows) => {
+        db.query('select * from plate where active = 1', (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         })
