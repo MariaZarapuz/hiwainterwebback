@@ -1,6 +1,6 @@
 const getAllDrinks = () => {
     return new Promise((resolve, reject) => {
-        db.query('select * from drink', (err, rows) => {
+        db.query('select * from drink active = 1', (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         })
