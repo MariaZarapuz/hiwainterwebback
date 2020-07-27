@@ -4,7 +4,7 @@ exports.connect = () => {
     const pool = mysql.createPool({
         host: '',
         user: 'root',
-        password: 'root',
+        password: '',
         port: '3306',
         database: 'hiWaiter'
     });
