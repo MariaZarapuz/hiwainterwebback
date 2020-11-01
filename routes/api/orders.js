@@ -22,33 +22,36 @@ router.post('/add', async (req, res) => {
 
 
 router.get('/:mesa', async (req, res) => {
-    const tickets = await Ticket.getTicketsByFk_tables(req.params.mesa)
-    console.log(tickets);
-    let arrayMesa = new Array();
-    let orders
-    let order = []
+    const idTable = await Table.searchIdTable(req.params.mesa)
+    let fk_table;
+    idTable.map(res => {
+        fk_table = res.id
+        return fk_table
+    });
 
-    for (let ticket of tickets) {
-        orders = await Order.getOrdersByFKTicket(ticket.id)
-        orders.map(async (res) => {
-            if (res.fk_drink) {
-                console.log('no entra sii ', res.fk_drink);
-                
-                /*  const name = await Drink.getDrinkById(res.fk_drink)
-                 console.log(res, name[0].name, name[0].price)
-                 order.push(res)
-                 order.name = name[0].name
-                 order.price = name[0].price
-                 console.log(order, 'final') */
-            } else {
-                console.log('eres comida', res.fk_plate);
-            }
+    let orders;
+    const tickets = await Ticket.getTicketsByFk_tables(fk_table)
+
+    tickets.map(async res => {
+        orders = await Order.getOrdersByFKTicket(res.id)
+        orders.map(async res => {
+            const commant = await Order.getOrderByPlate(res.fk_plate)
+            commant.map(res => {
+                console.log(res);
+            })
         })
 
-    }
+
+    })
+    const arrayMesa = new Array(orders)
 
 
-    await res.json(order)
 })
 
+
+router.get('/commant/:plate', async (req, res) => {
+    const commant = await Order.getOrderByPlate(req.params.plate)
+    console.log(commant);
+    res.json(commant)
+})
 module.exports = router;

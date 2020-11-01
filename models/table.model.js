@@ -17,6 +17,15 @@ const getByIdTables = (id, token) => {
         })
     })
 };
+const searchIdTable = (number) => {
+    console.log(number);
+    return new Promise((resolve, reject) => {
+        db.query('select id from tables where number=?', number, (err, rows) => {
+            if (err) reject(err);
+            resolve(rows)
+        })
+    })
+}
 
 
 
@@ -37,5 +46,6 @@ const editState = (state, id) => {
 module.exports = {
     getAllTables: getAllTables,
     getByIdTables: getByIdTables,
+    searchIdTable: searchIdTable,
     editState: editState
 };
